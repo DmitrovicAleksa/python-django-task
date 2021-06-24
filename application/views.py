@@ -20,8 +20,8 @@ class HomeView(APIView):
         return Response({"todos": todos})
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAdminUser)
+class UsersViewSet(viewsets.ModelViewSet):
+    # permission_classes = (permissions.IsAdminUser)
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
