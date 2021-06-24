@@ -26,10 +26,20 @@ class UsersViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class UserMeView(APIView):
+class UserView(APIView):
     queryset = User.objects.all()
     permission_classes = [permissions.IsAuthenticated]
     permission_classes = (permissions.IsAdminUser)
+    serilazer_class = UserSerializer
+    parser_classes = [JSONParser]
+
+    def get(self,request):
+        user = UserSerializer(request.user)
+        return Response(user.data)
+
+class UserMeView(APIView):
+    queryset = User.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
     serilazer_class = UserSerializer
     parser_classes = [JSONParser]
 
