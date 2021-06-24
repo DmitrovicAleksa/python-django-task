@@ -13,9 +13,3 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = "__all__"
 
-
-
-class NormalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['email','username']

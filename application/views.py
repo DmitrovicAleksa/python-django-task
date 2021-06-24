@@ -5,7 +5,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import ToDo, User
-from .serializers import NormalSerializer, UserSerializer
+from .serializers import UserSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import mixins, viewsets
 from rest_framework import authentication, permissions
@@ -20,17 +20,10 @@ class HomeView(APIView):
         return Response({"todos": todos})
 
 
-class UsersViewSet(viewsets.ModelViewSet):
-    # permission_classes = (permissions.IsAdminUser)
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-
 class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAdminUser)
     queryset = User.objects.all()
-    serializer_class = NormalSerializer
+    serializer_class = UserSerializer
 
 
 class UserMeView(APIView):
