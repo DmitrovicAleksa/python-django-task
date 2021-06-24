@@ -7,4 +7,4 @@ class AdminAccessPermission(permissions.BasePermission):
         if view.action == 'retrieve':
             return request.user.is_superuser
         else:
-            return False
+            return True
