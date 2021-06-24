@@ -7,11 +7,11 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'users', views.UsersViewSet, basename="users")
 
-
 app_name = 'todos'
 
 urlpatterns = [
     path('todos/', views.HomeView.as_view()),
     path('task-list/', views.HomeView.as_view()),
-    url('', include(router.urls))
+    url('', include(router.urls)),
+    path('user/me',  views.UserMeView.as_view())
 ]
