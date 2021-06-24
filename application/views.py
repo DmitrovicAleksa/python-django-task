@@ -5,7 +5,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import ToDo, User
-from .serializers import UserSerializer
+from .serializers import NormalSerializer, UserSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import mixins, viewsets
 from rest_framework import authentication, permissions
@@ -21,22 +21,27 @@ class HomeView(APIView):
 
 
 class UsersViewSet(viewsets.ModelViewSet):
+    # permission_classes = (permissions.IsAdminUser)
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    # def create(self,request):
-    #     serializer = UserSerializer(data=request.data)
-    #     if serializer.is_valid(raise_exception=True):
-    #         instance = serializer.save()
-    #         return Response(instance)
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAdminUser)
+    queryset = User.objects.all()
+    serializer_class = NormalSerializer
 
 
 class UserMeView(APIView):
     queryset = User.objects.all()
     permission_classes = [permissions.IsAuthenticated]
+    permission_classes = (permissions.IsAdminUser)
     serilazer_class = UserSerializer
     parser_classes = [JSONParser]
 
     def get(self,request):
         user = UserSerializer(request.user)
         return Response(user.data)
+
+

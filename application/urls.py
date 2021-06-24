@@ -13,5 +13,6 @@ urlpatterns = [
     path('todos/', views.HomeView.as_view()),
     path('task-list/', views.HomeView.as_view()),
     url('', include(router.urls)),
-    path('user/me',  views.UserMeView.as_view())
+    path('user/me',  views.UserMeView.as_view()),
+    path('users',  views.UserMeView.as_view())
 ]
