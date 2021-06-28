@@ -3,8 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import ToDo, User
 from .serializers import UserSerializer
-from rest_framework import  viewsets
-from rest_framework import  permissions
+from rest_framework import viewsets
+from rest_framework import permissions
 from .permissions import AdminAccessPermission
 from rest_framework.filters import SearchFilter
 from django.shortcuts import render
@@ -29,7 +29,6 @@ class UsersViewSet(viewsets.ModelViewSet):
 
     filter_backends = [SearchFilter]
     search_fields = ['first_name', 'last_name']
-
 
 
 class UserMeView(APIView):
