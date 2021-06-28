@@ -1,17 +1,13 @@
-from re import search
-from django.db.models import query
-from django.http import request
-from rest_framework import views
-import rest_framework
-from rest_framework.generics import ListAPIView
+from rest_framework import response
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import ToDo, User
 from .serializers import UserSerializer
-from rest_framework import mixins, viewsets
-from rest_framework import authentication, permissions
+from rest_framework import  viewsets
+from rest_framework import  permissions
 from .permissions import AdminAccessPermission
 from rest_framework.filters import SearchFilter
+from django.shortcuts import render
 
 
 class HomeView(APIView):
@@ -21,8 +17,12 @@ class HomeView(APIView):
 
 
 
-class UsersViewSet(viewsets.ModelViewSet):
+def getUserTemplate(response,id):
+        user = User.objects.get(pk = id)
+        return render(response,'user.html',{"user":user})
 
+
+class UsersViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AdminAccessPermission]

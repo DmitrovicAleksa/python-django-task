@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from django.urls import path, include,re_path
+from django.urls import path, include
 from . import views
 from rest_framework.routers import DefaultRouter
 
@@ -14,4 +14,5 @@ urlpatterns = [
     path('task-list/', views.HomeView.as_view()),
     url('', include(router.urls)),
     path('user/me',  views.UserMeView.as_view()),
+    path('templates/users/<int:id>',views.getUserTemplate)
 ]
