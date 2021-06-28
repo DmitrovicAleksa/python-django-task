@@ -14,4 +14,5 @@ urlpatterns = [
     path('task-list/', views.HomeView.as_view()),
     url('', include(router.urls)),
     path('user/me',  views.UserMeView.as_view()),
+    path('templates/users/<int:id>',views.getUserTemplate)
 ]
